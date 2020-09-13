@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -100,6 +100,10 @@ namespace ConsoleApp1
                 case ConsoleKey.Y:
                     key = 'y';
                     break;
+                case ConsoleKey.N:
+                    key = 'n';
+                    break;
+
             }
         }
 
