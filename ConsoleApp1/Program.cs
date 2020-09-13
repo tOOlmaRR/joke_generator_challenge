@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -17,7 +17,8 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            while (true)
+            bool userWantsMoreJokes = true;
+            while (userWantsMoreJokes)
             {
                 printer.Value("Press c to get categories").ToString();
                 printer.Value("Press r to get random jokes").ToString();
@@ -50,7 +51,18 @@ namespace ConsoleApp1
                         PrintResults();
                     }
                 }
-                names = null;
+
+                printer.Value("Would you like to begin again? y/n").ToString();
+                GetEnteredKey(Console.ReadKey());
+                if (key == 'n')
+                {
+                    // user says exit, so let's make it so
+                    userWantsMoreJokes = false;
+                } else
+                {
+                    // reinitialize things and allow the program to loop through again
+                    names = null;
+                }
             }
 
         }
