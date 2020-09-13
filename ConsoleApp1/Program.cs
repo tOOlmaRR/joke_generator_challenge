@@ -23,17 +23,23 @@ namespace ConsoleApp1
                 printer.Value("Press c to get categories").ToString();
                 printer.Value("Press r to get random jokes").ToString();
                 GetEnteredKey(Console.ReadKey());
+                
+                // Load and display categories
                 if (key == 'c')
                 {
                     getCategories();
                     PrintResults();
                 }
+
+                // Let's tell some jokes
                 if (key == 'r')
                 {
                     printer.Value("Want to use a random name? y/n").ToString();
                     GetEnteredKey(Console.ReadKey());
                     if (key == 'y')
+                    { 
                         GetNames();
+                    }
                     printer.Value("Want to specify a category? y/n").ToString();
                     if (key == 'y')
                     {
@@ -58,7 +64,8 @@ namespace ConsoleApp1
                 {
                     // user says exit, so let's make it so
                     userWantsMoreJokes = false;
-                } else
+                }
+                else
                 {
                     // reinitialize things and allow the program to loop through again
                     names = null;
@@ -115,7 +122,6 @@ namespace ConsoleApp1
                 case ConsoleKey.N:
                     key = 'n';
                     break;
-
             }
         }
 
