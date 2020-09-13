@@ -63,7 +63,7 @@ namespace ConsoleApp1
 			HttpClient client = new HttpClient();
 			client.BaseAddress = new Uri(_url);
 
-			return new string[] { Task.FromResult(client.GetStringAsync("categories").Result).Result };
+			return new string[] { Task.FromResult(client.GetStringAsync("jokes/categories").Result).Result };
 		}
     }
 }
