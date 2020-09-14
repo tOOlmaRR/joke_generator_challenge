@@ -127,19 +127,19 @@ namespace ConsoleApp1
 
         private static void GetRandomJokes(string category, int number)
         {
-            new JsonFeed("https://api.chucknorris.io", number);
-            results = JsonFeed.GetRandomJokes(names?.Item1, names?.Item2, category);
+            new JsonFeed("https://api.chucknorris.io");
+            results = JsonFeed.GetRandomJokes(names?.Item1, names?.Item2, category, number);
         }
 
         private static void getCategories()
         {
-            new JsonFeed("https://api.chucknorris.io", 0);
+            new JsonFeed("https://api.chucknorris.io");
             results = JsonFeed.GetCategories();
         }
 
         private static void GetNames()
         {
-            new JsonFeed("https://www.names.privserv.com/api/", 0);
+            new JsonFeed("https://www.names.privserv.com/api/");
             dynamic result = JsonFeed.Getnames();
             names = Tuple.Create(result.name.ToString(), result.surname.ToString());
         }

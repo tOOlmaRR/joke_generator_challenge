@@ -13,12 +13,12 @@ namespace ConsoleApp1
         static string _url = "";
 
         public JsonFeed() { }
-        public JsonFeed(string endpoint, int results)
+        public JsonFeed(string endpoint)
         {
             _url = endpoint;
         }
         
-		public static string[] GetRandomJokes(string firstname, string lastname, string category)
+		public static string[] GetRandomJokes(string firstname, string lastname, string category, int results)
 		{
 			HttpClient client = new HttpClient();
 			client.BaseAddress = new Uri(_url);
@@ -32,17 +32,21 @@ namespace ConsoleApp1
 				url += category;
 			}
 
-            string joke = Task.FromResult(client.GetStringAsync(url).Result).Result;
-
-            if (firstname != null && lastname != null)
+            string[] allJokes = new string[results];
+            for (int i = 0; i < results; i++)
             {
-                int index = joke.IndexOf("Chuck Norris");
-                string firstPart = joke.Substring(0, index);
-                string secondPart = joke.Substring(0 + index + "Chuck Norris".Length, joke.Length - (index + "Chuck Norris".Length));
-                joke = firstPart + " " + firstname + " " + lastname + secondPart;
-            }
+                string joke = Task.FromResult(client.GetStringAsync(url).Result).Result;
 
-            return new string[] { JsonConvert.DeserializeObject<dynamic>(joke).value };
+                if (firstname != null && lastname != null)
+                {
+                    int index = joke.IndexOf("Chuck Norris");
+                    string firstPart = joke.Substring(0, index);
+                    string secondPart = joke.Substring(0 + index + "Chuck Norris".Length, joke.Length - (index + "Chuck Norris".Length));
+                    joke = firstPart + " " + firstname + " " + lastname + secondPart;
+                }
+                allJokes[i] = JsonConvert.DeserializeObject<dynamic>(joke).value;
+            }
+            return allJokes;
         }
 
         /// <summary>
