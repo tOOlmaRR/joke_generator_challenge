@@ -143,7 +143,7 @@ namespace ConsoleApp1
         private static void GetNames()
         {
             new JsonFeed("https://www.names.privserv.com/api/");
-            dynamic result = JsonFeed.Getnames();
+            dynamic result = JsonFeed.GetNames();
             names = Tuple.Create(result.name.ToString(), result.surname.ToString());
         }
     }

@@ -54,7 +54,7 @@ namespace ConsoleApp1
         /// </summary>
         /// <param name="client2"></param>
         /// <returns></returns>
-		public static dynamic Getnames()
+		public static dynamic GetNames()
 		{
 			HttpClient client = new HttpClient();
 			client.BaseAddress = new Uri(_url);
