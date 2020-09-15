@@ -40,22 +40,25 @@ namespace ConsoleApp1
                     { 
                         GetNames();
                     }
+
+                    printer.Value("How many jokes do you want? (1-9)").ToString();
+                    int n = 1;
+                    GetEnteredKey(Console.ReadKey());
+                    if (key > 1 && key <= 9)
+                    {
+                        n = key;
+                    }
+
+                    string? category = null;
                     printer.Value("Want to specify a category? y/n").ToString();
+                    GetEnteredKey(Console.ReadKey());
                     if (key == 'y')
                     {
-                        printer.Value("How many jokes do you want? (1-9)").ToString();
-                        int n = Int32.Parse(Console.ReadLine());
-                        printer.Value("Enter a category;").ToString();
-                        GetRandomJokes(Console.ReadLine(), n);
-                        PrintResults();
+                        printer.Value("Enter a category (followed by the ENTER key): ").ToString();
+                        category = Console.ReadLine();
                     }
-                    else
-                    {
-                        printer.Value("How many jokes do you want? (1-9)").ToString();
-                        int n = Int32.Parse(Console.ReadLine());
-                        GetRandomJokes(null, n);
-                        PrintResults();
-                    }
+                    GetRandomJokes(category, n);
+                    PrintResults();
                 }
 
                 printer.Value("Would you like to begin again? y/n").ToString();
